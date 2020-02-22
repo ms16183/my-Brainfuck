@@ -7,4 +7,7 @@ bf: bf.c
 clean:
 	rm -f bf
 
+test:
+	@./testcase.sh
+
 .PHONY: test clean
