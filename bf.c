@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 
 #define STK_SIZE (32)
 #define ARR_SIZE (64)
@@ -27,9 +26,9 @@ int main(int argc, char **argv){
   char *input = argv[1];
 
   // array of Brainfuck.
-  char arr[ARR_SIZE] = {};
+  unsigned char arr[ARR_SIZE] = {};
   // current cell.
-  char *current = arr;
+  unsigned char *current = arr;
 
   // A stack for mapping "[" and "]".
   STACK bracket;
@@ -113,7 +112,7 @@ int main(int argc, char **argv){
 
   // visualize array.
   for(int i = 0; i < ARR_SIZE; i++){
-    printf("|%03d", (unsigned char)arr[i]);
+    printf("|%03d", arr[i]);
     if((i+1) % 16 == 0){
       printf("|\n");
     }
