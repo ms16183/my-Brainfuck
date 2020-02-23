@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define READ_SIZE (1024)
 #define STK_SIZE (32)
 #define ARR_SIZE (64)
 
@@ -16,14 +17,38 @@ void stkinit(STACK*);
 void push(STACK*, char*);
 char *pop(STACK*);
 
+void brainfuck(char*, int);
+
 int main(int argc, char **argv){
 
+  char *input = NULL;
+
   if(argc != 2){
-    fprintf(stderr, "Usage: %s <program>\n", argv[0]);
+    fprintf(stderr, "Usage: %s file\n", argv[0]);
+    fprintf(stderr, "     : %s script\n", argv[0]);
     exit(1);
   }
 
-  char *input = argv[1];
+  // Read *.bf.
+  FILE *fp;
+  char buf[READ_SIZE];
+
+  if((fp = fopen(argv[1], "r")) != NULL){
+    fscanf(fp, "%s", buf);
+    input = buf;
+    fclose(fp);
+  }
+  else{
+    // when *.bf nou found, file name uses as script.
+    input = argv[1];
+  }
+
+  brainfuck(input, 0);
+
+  return 0;
+}
+
+void brainfuck(char *input, int show_arr){
 
   // array of Brainfuck.
   unsigned char arr[ARR_SIZE] = {};
@@ -111,15 +136,17 @@ int main(int argc, char **argv){
   }
 
   // visualize array.
-  for(int i = 0; i < ARR_SIZE; i++){
-    printf("|%03d", arr[i]);
-    if((i+1) % 16 == 0){
-      printf("|\n");
+  if(show_arr){
+    printf("\n");
+    for(int i = 0; i < ARR_SIZE; i++){
+      printf("|%03d", arr[i]);
+      if((i+1) % 16 == 0){
+        printf("|\n");
+      }
     }
   }
-  return 0;
+  return;
 }
-
 
 void stkinit(STACK *stk){
   for(int i = 0; i < STK_SIZE; i++){

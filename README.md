@@ -1,7 +1,6 @@
 # My Brainfuck
-[Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) is one of the esoteric programming language.
-This uses only '>', '<', '+', '-', '.', ',', '[' and ']'. Other character are ignore.
-
+[Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) is one of the esoteric programming languages.
+This uses only `>`, `<`, `+`, `-`, `.`, `,`, `[` and `]`. Other characters are ignore.
 
 |Character|Meaning|
 |:-------:|:------|
@@ -16,8 +15,23 @@ This uses only '>', '<', '+', '-', '.', ',', '[' and ']'. Other character are ig
 
 # Usage
 
+Make an executable file.
+
 ```
 $ make
+```
+
+From file.
+
+```
+$ echo '+++++++++[>++++++++>+++++++++++>+++>+<<<<-]>.>++.+++++++..+++.>+++++.<<+++++++++++++++.>.+++.------.--------.>+.>+.' > hello.bf
+$ ./bf hello.bf
+Hello World!
+```
+
+From command line.
+
+```
 $ ./bf '+++++++++[>++++++++>+++++++++++>+++>+<<<<-]>.>++.+++++++..+++.>+++++.<<+++++++++++++++.>.+++.------.--------.>+.>+.'
 Hello World!
 ```
